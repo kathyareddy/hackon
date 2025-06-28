@@ -20,9 +20,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
-      if (u) {
-        setUser(u);
-      }
+      if (u) setUser(u);
     });
     return () => unsubscribe();
   }, []);
@@ -43,7 +41,7 @@ export default function DashboardPage() {
         ...doc.data(),
         createdAt: doc.data().createdAt?.toDate?.(),
       }));
-      setQuizHistory(history.reverse()); // for chart: oldest to latest
+      setQuizHistory(history);
     };
 
     fetchQuizHistory();
@@ -61,27 +59,37 @@ export default function DashboardPage() {
         <p className="text-center text-gray-500">No quiz attempts found.</p>
       ) : (
         <>
+          {/* Chart */}
           <div className="mb-8">
             <h2 className="text-lg font-semibold mb-2">📈 Score Trend</h2>
             <ResponsiveContainer width="100%" height={250}>
               <LineChart
-                data={quizHistory.map((q, i) => ({
-                  name: `#${i + 1}`,
-                  score: q.score,
-                }))}
+                data={quizHistory
+                  .slice()
+                  .reverse()
+                  .map((q, i) => ({
+                    name: `#${i + 1}`,
+                    score: q.score,
+                  }))}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="name"
-                  tick={{ fill: "#f5f5dc", fontSize: 14, fontWeight: "bold" }}
+                  tick={{
+                    fill: "#1e293b", // dark gray text
+                    fontSize: 14,
+                    fontWeight: "bold",
+                  }}
                 />
                 <YAxis allowDecimals={false} />
                 <Tooltip />
-                <Line type="monotone" dataKey="score" stroke="#3b82f6" />
+                <Line type="monotone" dataKey="score" stroke="#10b981" />{" "}
+                {/* green line */}
               </LineChart>
             </ResponsiveContainer>
           </div>
 
+          {/* History Cards */}
           <div className="grid gap-4">
             {quizHistory.map((entry, idx) => (
               <div
