@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
+import Link from "next/link";
 
 export default function HomePage() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function HomePage() {
     onAuthStateChanged(auth, (user) => {
       if (!user) router.push("/login");
     });
-  });
+  }, [router]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-8 text-center">
@@ -44,6 +45,17 @@ export default function HomePage() {
           📊 View Dashboard
         </button>
       </div>
+
+      {/* Signup Link */}
+      <p className="mt-6 text-sm text-gray-700">
+        Don’t have an account?{" "}
+        <Link
+          href="/signup"
+          className="text-blue-600 hover:underline font-medium"
+        >
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 }
