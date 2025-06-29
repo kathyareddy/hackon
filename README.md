@@ -3,6 +3,13 @@ README: AI-Powered Interview Mentor
 Overview:  
 An AI-enhanced, full-stack web application built to help students prepare for interviews through personalized aptitude quizzes, coding support, and performance dashboards. This platform uses Generative AI to simulate mentorship and guides learners in understanding complex aptitude and coding concepts.
 
+How to use:
+- Login/signup
+- Take aptitude quiz in aptitude section
+- Check dashboard for scores and progress reports
+- Go to AI Mentor section for queries regarding Coding or Aptitude
+  
+
 
 Features:  
 Firebase Authentication (Sign Up, Login, Logout)  
@@ -57,7 +64,7 @@ Add environment variables Create a .env.local file in the root directory:
 GROQ_API_KEY=your_groq_key_here  
 Run the development server  
 npm run dev  
-Open your browser and go to http://localhost:3000  
+
 
   
 Deployment  
