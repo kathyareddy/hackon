@@ -4,9 +4,9 @@ Overview:
 An AI-enhanced, full-stack web application built to help students prepare for interviews through personalized aptitude quizzes, coding support, and performance dashboards. This platform uses Generative AI to simulate mentorship and guides learners in understanding complex aptitude and coding concepts.
 
 How to use:
-- Login/signup
+- Login/signup (use any email account and password to sign up)
 - Take aptitude quiz in aptitude section
-- Check dashboard for scores and progress reports
+- Check dashboard for scores and progress reports (Quiz scores are stored in Firebase Firestore)
 - Go to AI Mentor section for queries regarding Coding or Aptitude
   
 
