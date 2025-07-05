@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { auth } from "@/lib/firebase";
-import { generateAptitudeQuestions } from "@/lib/genAptitudeQuestions";
+import { generateCodingQuestions } from "@/lib/genCodingQuestions";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-export default function AptitudePage() {
+export default function CodingPage() {
   const [topic, setTopic] = useState("");
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
@@ -20,7 +20,7 @@ export default function AptitudePage() {
   const loadQuestions = async () => {
     if (!topic) return;
     setLoading(true);
-    const qns = await generateAptitudeQuestions(topic);
+    const qns = await generateCodingQuestions(topic);
     setQuestions(qns);
     setCurrent(0);
     setSelected("");
@@ -45,6 +45,7 @@ export default function AptitudePage() {
         score: correct,
         total: questions.length,
         topic,
+        type: "coding",
         createdAt: serverTimestamp(),
       });
     } catch (err) {
@@ -67,7 +68,7 @@ export default function AptitudePage() {
 
   return (
     <div className="max-w-xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">🧠 Aptitude Practice</h1>
+      <h1 className="text-2xl font-bold mb-4">💻 Coding Practice</h1>
 
       {!questions.length ? (
         <div className="space-y-4">
@@ -78,16 +79,16 @@ export default function AptitudePage() {
           >
             <option value="">Select a topic</option>
             {[
-              "Probability",
-              "Time & Work",
-              "Averages",
-              "Number Series",
-              "Ratios",
-              "Permutations",
-              "Percentages",
-              "Profit & Loss",
-              "Coding Patterns",
-              "Sorting Algorithms",
+              "Arrays",
+              "Strings",
+              "Recursion",
+              "Sorting",
+              "Searching",
+              "Stacks & Queues",
+              "Trees",
+              "Linked Lists",
+              "Graphs",
+              "Dynamic Programming",
             ].map((t) => (
               <option key={t} value={t.toLowerCase()}>
                 {t}

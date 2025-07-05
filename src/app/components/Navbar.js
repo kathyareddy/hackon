@@ -32,7 +32,10 @@ export default function Navbar() {
           🤖 AI Mentor
         </Link>
         <Link href="/aptitude" className="hover:underline">
-          🧠 Aptitude
+          🧠 Aptitude Quiz
+        </Link>
+        <Link href="/coding" className="hover:underline">
+          💻 Coding Quiz
         </Link>
 
         {user ? (
